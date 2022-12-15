@@ -79,19 +79,6 @@ def run_eda_app():
 
     st.text(' ')
     st.text(' ')
-    st.markdown('##### 온라인 소비자의 여가 문화 분석 데이터프레임')
-
-    # 유저가 컬럼을 선택하면, 해당 컬럼을 화면에 보여주고,
-    # 유저가 아무컬럼도 선택하지 않으면, 데이터프레임 보여주지 않는다.
-
-    selected_list = st.multiselect('원하는 컬럼을 선택하세요', leisure_data.columns)
-    
-    if selected_list :
-        st.dataframe(leisure_data[selected_list].head(5)) 
-
-    else :
-        st.dataframe(leisure_data[['age','gender','income_degree','now_leisure_spend','willingness_to_spending']].head(5))
-    
 
 
     leisure_menu = ['연령대별 가구소득정도', '현재 여가활동 지출정도', '앞으로의 여가활동 지출정도 예상' ,'가장 활발한 여가활동']
@@ -99,6 +86,19 @@ def run_eda_app():
 
 
     if my_choice == '연령대별 가구소득정도' :
+        st.markdown('##### 온라인 소비자의 여가 문화 분석 데이터프레임')
+
+        # 유저가 컬럼을 선택하면, 해당 컬럼을 화면에 보여주고,
+        # 유저가 아무컬럼도 선택하지 않으면, 기본컬럼들만 보여준다.
+
+        selected_list = st.multiselect('원하는 컬럼을 선택하세요', leisure_data.columns)
+        
+        if selected_list :
+            st.dataframe(leisure_data[selected_list].head(5)) 
+
+        else :
+            st.dataframe(leisure_data[['age','gender','income_degree','now_leisure_spend','willingness_to_spending']].head(5))
+        
         st.text(' ')
         st.text(' ')
         st.text(' ')
@@ -177,11 +177,21 @@ def run_eda_app():
 
 
     elif my_choice == '가장 활발한 여가활동' :
+        st.markdown('##### 온라인 소비자의 평균 여가문화 시간 - 평일/주말/1주')
+
+        # 소비자의 평균 여가문화시간 데이터프레임
+        leisure_use = leisure_data.groupby('gender')[['workday_leisure_avg','weekend_leisure_avg','one_week_total_leisure']].mean()
+        leisure_use['gender'] = ['여성','남성']
+        leisure_use = leisure_use.set_index('gender')
+        st.dataframe(leisure_use)
+
+
+
         # 연령별 가장 활발한 여가활동을 히트맵으로 나타내기
         st.text(' ')
-        st.info('연령별 또는 남녀별 어떤 여가활동이 활발했는지 보여줍니다.')
         st.text(' ')
         st.text(' ')
+        st.markdown('##### 연령별 또는 남녀별 어떤 여가활동이 활발했는지 보여줍니다.')
         column_list = leisure_data[['rest_rcrt_rate','hobby_rate','self_impt_rate','human_relationship_rate','etc_rate']].columns
         selected_list = st.multiselect('원하는 컬럼을 선택하세요! 선택한 컬럼들로 히트맵을 그려집니다.', column_list)
         if selected_list :
@@ -195,8 +205,6 @@ def run_eda_app():
 
         else :
             st.text('')
-
-
 
 
 
