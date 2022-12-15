@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import seaborn as sb
 import plotly.express as px
 import altair as alt
+import plotly.offline as pyo
+import plotly.graph_objs as go
 
 # 한글 처리를 위한 코드
 # %matplotlib inline
@@ -88,7 +90,7 @@ def run_eda_app():
         st.dataframe(leisure_data[selected_list].head(5)) 
 
     else :
-        st.text('')
+        st.dataframe(leisure_data[['age','gender','income_degree','now_leisure_spend','willingness_to_spending']].head(5))
     
 
 
@@ -101,15 +103,12 @@ def run_eda_app():
         st.text(' ')
         st.text(' ')
 
-       
 
-        # 연령대별 가구소득 정보 차트  
-        fig = plt.figure()
-        leisure_data.groupby('age')['income_degree'].mean().sort_values().plot(kind= 'bar')
-        plt.xticks(rotation= 45)
-        plt.title('연령대별 가구소득정도')
-        plt.ylabel('income')
-        st.pyplot(fig)
+        df1= leisure_data.groupby(by='age')['income_degree'].mean().reset_index()
+        df_sorted = df1.sort_values('age', ascending= False)
+        fig7 = px.bar(df_sorted, x= 'age', y= 'income_degree', title='연령대별 가구소득정도')
+        st.plotly_chart(fig7)
+        
 
 
     # 현재 여가활동 지출정도 파이차트로 나타내기 - 남녀별 / 나이대별로
