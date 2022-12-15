@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import seaborn as sb
 import plotly.express as px
 import altair as alt
-import plotly.graph_objects as go
 
 # 한글 처리를 위한 코드
 # %matplotlib inline
@@ -79,7 +78,18 @@ def run_eda_app():
     st.text(' ')
     st.text(' ')
     st.markdown('##### 온라인 소비자의 여가 문화 분석 데이터프레임')
-    st.dataframe(leisure_data.head(5))
+
+    # 유저가 컬럼을 선택하면, 해당 컬럼을 화면에 보여주고,
+    # 유저가 아무컬럼도 선택하지 않으면, 데이터프레임 보여주지 않는다.
+
+    selected_list = st.multiselect('원하는 컬럼을 선택하세요', leisure_data.columns)
+    
+    if selected_list :
+        st.dataframe(leisure_data[selected_list].head(5)) 
+
+    else :
+        st.text('')
+    
 
 
     leisure_menu = ['연령대별 가구소득정도', '현재 여가활동 지출정도', '앞으로의 여가활동 지출정도 예상' ,'가장 활발한 여가활동']

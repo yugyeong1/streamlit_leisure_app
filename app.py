@@ -3,6 +3,7 @@ import streamlit as st
 from PIL import Image
 from app_eda import run_eda_app
 from app_home import run_home_app
+from app_about import run_about_app
  
 def main() :
     st.title('온라인 소비자의 여가 문화 분석')
@@ -16,7 +17,7 @@ def main() :
     elif choice == 'EDA' :
         run_eda_app()
     elif choice == 'About' :
-        pass
+        run_about_app()
 
 
 if __name__ == '__main__' :
