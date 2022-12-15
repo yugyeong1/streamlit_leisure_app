@@ -1,5 +1,6 @@
 
 import streamlit as st
+from PIL import Image
 from app_eda import run_eda_app
 from app_home import run_home_app
  
@@ -8,6 +9,7 @@ def main() :
     menu = ['Home', 'EDA', 'About']
  
     choice = st.sidebar.selectbox('메뉴', menu)
+    img = st.sidebar.image('https://t1.daumcdn.net/cfile/tistory/252A0E475462E85A24')
  
     if choice == 'Home' :
         run_home_app()

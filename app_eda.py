@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sb
 import plotly.express as px
 import altair as alt
+import plotly.graph_objects as go
 
 # 한글 처리를 위한 코드
 # %matplotlib inline
@@ -21,6 +22,8 @@ elif platform.system() == 'Windows':
     rc('font', family=font_name)
 else:
     print('Unknown system... sorry~~~~')
+
+
 
 
 def run_eda_app():
@@ -76,7 +79,7 @@ def run_eda_app():
     st.text(' ')
     st.text(' ')
     st.markdown('##### 온라인 소비자의 여가 문화 분석 데이터프레임')
-    st.dataframe(leisure_data.head(3))
+    st.dataframe(leisure_data.head(5))
 
 
     leisure_menu = ['연령대별 가구소득정도', '현재 여가활동 지출정도', '앞으로의 여가활동 지출정도 예상' ,'가장 활발한 여가활동']
@@ -87,6 +90,9 @@ def run_eda_app():
         st.text(' ')
         st.text(' ')
         st.text(' ')
+
+       
+
         # 연령대별 가구소득 정보 차트  
         fig = plt.figure()
         leisure_data.groupby('age')['income_degree'].mean().sort_values().plot(kind= 'bar')
@@ -96,13 +102,13 @@ def run_eda_app():
         st.pyplot(fig)
 
 
-    # 현재 여가활동 지출정도 파이차트로 나타내기 - 성별로 / 나이대별로
+    # 현재 여가활동 지출정도 파이차트로 나타내기 - 남녀별 / 나이대별로
     #plotly pie차트
     elif my_choice == '현재 여가활동 지출정도' :
 
         st.text(' ')
         st.text(' ')
-        st.info('소비자의 연령대 또는 성별로 현재 여가활동 지출 정도를 나타내줍니다.')
+        st.info('소비자의 연령대 또는 남녀별로 현재 여가활동 지출 정도를 나타내줍니다.')
         st.text(' ')
 
         age_choice= st.selectbox('연령대 선택',leisure_data['age'].unique())
@@ -133,7 +139,7 @@ def run_eda_app():
 
         st.text(' ')
         st.text(' ')
-        st.info('소비자의 연령대 또는 성별로 앞으로의 여가활동 지출정도 예상치를 나타내줍니다.')
+        st.info('소비자의 연령대 또는 남녀별로 앞으로의 여가활동 지출정도 예상치를 나타내줍니다.')
         st.text(' ')
 
         age_choice= st.selectbox('연령대 선택',leisure_data['age'].unique())
@@ -162,28 +168,27 @@ def run_eda_app():
 
 
     elif my_choice == '가장 활발한 여가활동' :
-
-        st.text(' ')
-        st.info('연령벌 또는 성별로 어떤 여가활동이 활발했는지 보여줍니다.')
-        st.text(' ')
-        st.text(' ')
-
-        selected_list = st.multiselect('원하는 컬럼을 선택하세요', leisure_data[['rest_rcrt_rate','hobby_rate','self_impt_rate','human_relationship_rate','etc_rate']].columnsmns)
-
-
-
-
-
-
         # 연령별 가장 활발한 여가활동을 히트맵으로 나타내기
-        data = leisure_data.groupby('age')[['rest_rcrt_rate','hobby_rate','self_impt_rate','human_relationship_rate','etc_rate']].mean()
-        fig6 = plt.figure()
-        sb.heatmap(data, cmap='coolwarm', annot= True, fmt='.1f', linewidths= 0.7)
-        plt.title('연령별 가장 활발한 여가활동')
-        
-        plt.xticks(rotation= 45)
-        plt.yticks(rotation= 360)
-        st.pyplot(fig6)
+        st.text(' ')
+        st.info('연령별 또는 남녀별 어떤 여가활동이 활발했는지 보여줍니다.')
+        st.text(' ')
+        st.text(' ')
+        column_list = leisure_data[['rest_rcrt_rate','hobby_rate','self_impt_rate','human_relationship_rate','etc_rate']].columns
+        selected_list = st.multiselect('원하는 컬럼을 선택하세요! 선택한 컬럼들로 히트맵을 그려집니다.', column_list)
+        if selected_list :
+            data = leisure_data.groupby('age')[selected_list].mean()
+            fig6 = plt.figure()
+            sb.heatmap(data, cmap='coolwarm', annot= True, fmt='.1f', linewidths= 0.7)
+            plt.title('연령별 가장 활발한 여가활동')
+            plt.xticks(rotation= 45)
+            plt.yticks(rotation= 360)
+            st.pyplot(fig6)
+
+        else :
+            st.text('')
+
+
+
 
 
         # 성별로 활발한 
@@ -204,8 +209,5 @@ def run_eda_app():
         plt.xlabel('type of leisure')
         plt.ylabel('average of numbers')
         st.pyplot(fig7)
-
-       
-
 
 
