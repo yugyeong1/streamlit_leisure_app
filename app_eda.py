@@ -114,9 +114,7 @@ def run_eda_app():
     # 현재 여가활동 지출정도 파이차트로 나타내기 - 남녀별 / 나이대별로
     #plotly pie차트
     elif my_choice == '현재 여가활동 지출정도' :
-
-        st.text(' ')
-        st.text(' ')
+        st.subheader('소비자의 현재 여가활동 지출정도')
         st.info('소비자의 연령대 또는 남녀별로 현재 여가활동 지출 정도를 나타내줍니다.')
         st.text(' ')
 
@@ -145,9 +143,7 @@ def run_eda_app():
 
 
     elif my_choice == '앞으로의 여가활동 지출정도 예상':
-
-        st.text(' ')
-        st.text(' ')
+        st.subheader('소비자의 앞으로의 여가활동 지출정도 예상')
         st.info('소비자의 연령대 또는 남녀별로 앞으로의 여가활동 지출정도 예상치를 나타내줍니다.')
         st.text(' ')
 
@@ -204,8 +200,13 @@ def run_eda_app():
             st.pyplot(fig6)
 
         else :
-            st.text('')
-
+            data = leisure_data.groupby('age')[['rest_rcrt_rate','hobby_rate','self_impt_rate','human_relationship_rate','etc_rate']].mean()
+            fig6 = plt.figure()
+            sb.heatmap(data, cmap='coolwarm', annot= True, fmt='.1f', linewidths= 0.7)
+            plt.title('연령별 가장 활발한 여가활동')
+            plt.xticks(rotation= 45)
+            plt.yticks(rotation= 360)
+            st.pyplot(fig6)
 
 
         # 성별로 활발한 
