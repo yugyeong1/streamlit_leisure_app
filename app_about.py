@@ -14,7 +14,7 @@ def run_about_app() :
     st.text('')
 
 
-    st.info('온라인(PC/모바일) 소비자의 여가관련 지출 동향 및 의향')
+    st.info('하루 평균 여가문화 시간 및 사용 비중')
     avg_leisure2 = pd.read_csv('data/avg_leisure/avg_leisure2.csv')
     st.dataframe(avg_leisure2.head(3))
 
