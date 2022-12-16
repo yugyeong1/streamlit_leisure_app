@@ -189,7 +189,7 @@ def run_eda_app():
         st.text(' ')
         st.markdown('##### 연령별 또는 남녀별 어떤 여가활동이 활발했는지 보여줍니다.')
         column_list = leisure_data[['rest_rcrt_rate','hobby_rate','self_impt_rate','human_relationship_rate','etc_rate']].columns
-        selected_list = st.multiselect('원하는 컬럼을 선택하세요! 선택한 컬럼들로 히트맵을 그려집니다.', column_list)
+        selected_list = st.multiselect('원하는 컬럼을 선택하세요! 컬럼을 선택하면 선택한 컬럼들로만 히트맵을 그려집니다.', column_list)
         if selected_list :
             data = leisure_data.groupby('age')[selected_list].mean()
             fig6 = plt.figure()
