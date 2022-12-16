@@ -71,6 +71,7 @@ plotly 의 pie 차트를 이용하여서 나타내었습니다.
 
 <br/>
 
+RESPOND_ID : 응답자ID  
 EXAMIN_BEGIN_DE : 조사시작일자  
 SEXDSTN_FLAG_CD	: 성별구분코드  	
 AGRDE_FLAG_NM : 연령대구분명  
@@ -79,11 +80,13 @@ HSHLD_INCOME_DGREE_NM : 가구소득정도명
 LSR_CT_EXPNDTR_TNDCY_VALUE : 레저비용지출동향값  
 LSR_CT_EXPNDTR_INTEN_VALUE : 레저비용지출의향값  
 
+<br/>
 
 #### 온라인(PC/모바일) 소비자의 하루 평균 여가문화 시간 및 사용 비중 
 
 <br/>
 
+RESPOND_ID : 응답자ID  
 EXAMIN_BEGIN_DE : 조사시작일자  
 SEXDSTN_FLAG_CD	: 성별구분코드  	
 AGRDE_FLAG_NM : 연령대구분명  
@@ -98,10 +101,26 @@ LSR_TIME_SELF_IMPT_USE_RATE : 레저시간본인계발사용비율
 LSR_TIME_TWDPSN_RLTN_FLWSP_USE_RATE : 레저시간대인관계교제사용비율  
 LSR_TIME_ETC_USE_RATE : 레저시간기타사용비율  
 
+<br/>
 
+#### 데이터분석에 이용한 컬럼 & 가공 컬럼명
 
+<br/>
 
-
+id : 응답자ID  
+gender : 성별구분  
+age : 연령대구분  
+area : 답변자거주지역명  
+income_degree : 가구소득정도  
+inspection_day : 조사시작일자  
+workday_leisure_avg : 평일일평균레저시간값  
+weekend_leisure_avg : 주말일평균레저시간값  
+one_week_total_leisure : 1주총레저시간값  
+rest_rcrt_rate : 레저시간휴식오락사용비율  
+hobby_rate : 레저시간취미사용비율  
+self_impt_rate : 레저시간본인계발사용비율  
+human_relationship_rate : 레저시간대인관계교제사용비율  
+etc_rate : 레저시간기타사용비율  
 
 
 
