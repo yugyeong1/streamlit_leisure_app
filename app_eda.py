@@ -6,20 +6,25 @@ import seaborn as sb
 import plotly.express as px
 
 # 한글 처리를 위한 코드
-# %matplotlib inline
-import platform
+#%matplotlib inline
+#import platform
 
 from matplotlib import font_manager, rc
-plt.rcParams['axes.unicode_minus'] = False
+font_path = "C:/Windows/Fonts/NGULIM.TTF"
+font = font_manager.FontProperties(fname=font_path).get_name()
+rc('font', family=font)
 
-if platform.system() == 'Darwin':
-    rc('font', family='AppleGothic')
-elif platform.system() == 'Windows':
-    path = "c:/Windows/Fonts/malgun.ttf"
-    font_name = font_manager.FontProperties(fname=path).get_name()
-    rc('font', family=font_name)
-else:
-    print('Unknown system... sorry~~~~')
+#from matplotlib import font_manager, rc
+#plt.rcParams['axes.unicode_minus'] = False
+
+#if platform.system() == 'Darwin':
+#    rc('font', family='AppleGothic')
+#elif platform.system() == 'Windows':
+#    path = "c:/Windows/Fonts/malgun.ttf"
+#    font_name = font_manager.FontProperties(fname=path).get_name()
+#    rc('font', family=font_name)
+#else:
+#    print('Unknown system... sorry~~~~')
 
 
 
