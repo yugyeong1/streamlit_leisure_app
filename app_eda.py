@@ -4,9 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sb
 import plotly.express as px
-import altair as alt
-import plotly.offline as pyo
-import plotly.graph_objs as go
 
 # 한글 처리를 위한 코드
 # %matplotlib inline
