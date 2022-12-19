@@ -7,24 +7,20 @@ import plotly.express as px
 
 # 한글 처리를 위한 코드
 #%matplotlib inline
-#import platform
+import platform
+
 
 from matplotlib import font_manager, rc
-font_path = "C:/Windows/Fonts/NGULIM.TTF"
-font = font_manager.FontProperties(fname=font_path).get_name()
-rc('font', family=font)
+plt.rcParams['axes.unicode_minus'] = False
 
-#from matplotlib import font_manager, rc
-#plt.rcParams['axes.unicode_minus'] = False
-
-#if platform.system() == 'Darwin':
-#    rc('font', family='AppleGothic')
-#elif platform.system() == 'Windows':
-#    path = "c:/Windows/Fonts/malgun.ttf"
-#    font_name = font_manager.FontProperties(fname=path).get_name()
-#    rc('font', family=font_name)
-#else:
-#    print('Unknown system... sorry~~~~')
+if platform.system() == 'Darwin':
+    rc('font', family='AppleGothic')
+elif platform.system() == 'Windows':
+    path = "c:/Windows/Fonts/malgun.ttf"
+    font_name = font_manager.FontProperties(fname=path).get_name()
+    rc('font', family=font_name)
+else:
+    print('Unknown system... sorry~~~~')
 
 
 
