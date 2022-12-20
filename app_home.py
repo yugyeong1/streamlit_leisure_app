@@ -13,3 +13,19 @@ def run_home_app() :
 
     img = Image.open('여가생활.png')
     st.image(img)
+
+    with st.expander('columns 설명 : ') :
+        st.text('id : 응답자ID')
+        st.text('gender : 성별구분')
+        st.text('age : 연령대구분')
+        st.text('area : 답변자거주지역명')
+        st.text('income_degree : 가구소득정도')
+        st.text('inspection_day : 조사시작일자')
+        st.text('workday_leisure_avg : 평일일평균레저시간값')
+        st.text('weekend_leisure_avg : 주말일평균레저시간값')
+        st.text('one_week_total_leisure : 1주총레저시간값')
+        st.text('rest_rcrt_rate : 레저시간휴식오락사용비율')
+        st.text('hobby_rate : 레저시간취미사용비율')
+        st.text('self_impt_rate : 레저시간본인계발사용비율')
+        st.text('human_relationship_rate : 레저시간대인관계교제사용비율')
+        st.text('etc_rate : 레저시간기타사용비율')
