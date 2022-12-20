@@ -124,6 +124,6 @@ etc_rate : 레저시간기타사용비율
 
 
 
-
+http://ec2-3-36-60-118.ap-northeast-2.compute.amazonaws.com:8501/
 
 
