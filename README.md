@@ -1,13 +1,13 @@
 <br/>
 <div align="center">
 
-#   leisure data 분석하여 streamlit 개발 프로젝트   
+#   🎈 leisure data 분석하여 streamlit 개발 프로젝트   
 
 </div>  
 <br/>
 <div align="cecnter">
 
-#### 🌟 Platfroms & languages 🌟
+### 🌟 Platfroms & languages 🌟
 
 </div>
 
@@ -22,7 +22,7 @@
 
 <div align="left">
 
-#### 🛠 Tools 🛠
+### 🛠 Tools 🛠
 
 </div>  
 
@@ -33,7 +33,12 @@
 
 <br/> 
 
-#### 사용한 라이브러리
+
+
+
+
+
+#### 📌 사용한 라이브러리
 
 <div>
 <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=Streamlit&logoColor=white"/> 
@@ -46,7 +51,7 @@
 
 <br/>
 
-### 데이터분석  
+### 📌 데이터분석  
 
 온라인(PC/모바일) 소비자의 여가관련 지출 동향 및 의향  
 온라인(PC/모바일) 소비자의 하루 평균 여가문화 시간 및 사용 비중  
@@ -62,8 +67,20 @@ plotly 의 pie 차트를 이용하여서 나타내었습니다.
 
 
 <br/>
-<br/>
 
+
+<div align="left">
+
+### 📌 Link
+
+
+http://ec2-3-36-60-118.ap-northeast-2.compute.amazonaws.com:8501/
+
+
+</div>  
+
+<br/>
+<br/>
 
 ### 데이터분석에 이용한 csv 데이터 컬럼
 
@@ -121,9 +138,4 @@ hobby_rate : 레저시간취미사용비율
 self_impt_rate : 레저시간본인계발사용비율  
 human_relationship_rate : 레저시간대인관계교제사용비율  
 etc_rate : 레저시간기타사용비율  
-
-
-
-http://ec2-3-36-60-118.ap-northeast-2.compute.amazonaws.com:8501/
-
 
