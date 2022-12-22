@@ -117,18 +117,37 @@ def run_eda_app():
     #plotly pie차트
     elif my_choice == '현재 여가활동 지출정도' :
         st.subheader('소비자의 현재 여가활동 지출정도')
+        st.text('')
         st.info('소비자의 연령대 또는 남녀별로 현재 여가활동 지출 정도를 나타내줍니다.')
         st.text(' ')
 
         age_choice= st.selectbox('연령대 선택',leisure_data['age'].unique())
 
-        data1= leisure_data[leisure_data['age'] == age_choice].sort_values('now_leisure_spend')
-        fig2 = px.pie(data1, names='now_leisure_spend', title= age_choice +' 현재 여가활동 지출 정도')
-        st.plotly_chart(fig2)
-        
-        st.text(' ')
-        st.text(' ')
+        tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
 
+        with tab1:
+
+            data1= leisure_data[leisure_data['age'] == age_choice].sort_values('now_leisure_spend')
+            fig2 = px.pie(data1, names='now_leisure_spend', title= age_choice +' 현재 여가활동 지출 정도')
+            st.plotly_chart(fig2)
+        
+        
+        with tab2 :
+            col1, col2 = st.columns(2)
+
+            with col1 :
+                st.text('')
+                tab_img = 'http://img.segye.com/content/image/2020/12/29/20201229507299.jpg'
+                st.image(tab_img)
+
+            with col2:
+                st.text('')
+                now_leisure_data = leisure_data[leisure_data['age']== age_choice]['now_leisure_spend'].value_counts().to_frame()
+                st.dataframe(now_leisure_data)
+                st.text(' ')
+            
+        st.text('')
+        st.text('')
 
        
         gender_choice= st.selectbox('성별 선택', ['여성','남성'])
@@ -139,9 +158,27 @@ def run_eda_app():
         elif gender_choice == '남성' :
             gender_choice2 = 'M'
 
-        data2= leisure_data[leisure_data['gender'] == gender_choice2].sort_values('now_leisure_spend')
-        fig3 = px.pie(data2, names='now_leisure_spend', title= gender_choice +' 현재 여가활동 지출 정도')
-        st.plotly_chart(fig3)
+        tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
+
+        with tab1:
+
+            data2= leisure_data[leisure_data['gender'] == gender_choice2].sort_values('now_leisure_spend')
+            fig3 = px.pie(data2, names='now_leisure_spend', title= gender_choice +' 현재 여가활동 지출 정도')
+            st.plotly_chart(fig3)
+
+        with tab2 :
+            col1, col2 = st.columns(2)
+
+            with col1 :
+                st.text('')
+                st.text('')
+                img2 = 'https://mblogthumb-phinf.pstatic.net/MjAxODEwMTdfMTM5/MDAxNTM5NzcwNzQ4NDMy.I8RvUZ7t6t5C1fq9N9YiByEkYss4AiuYsNGGDlOqv2Qg.xQDbBTlH2HRe5jKl_5aDdH6lJ-Am3FjLt8MD8UZbzCEg.PNG.mosfnet/181016_%EA%B8%B0%ED%9A%8D%EC%9E%AC%EC%A0%95%EB%B6%80%ED%99%88%EC%A1%B102.png?type=w800'
+                st.image(img2)
+            with col2:
+                now_leisure_data = leisure_data[leisure_data['gender']== gender_choice2]['now_leisure_spend'].value_counts().to_frame()
+                st.dataframe(now_leisure_data)
+                st.text(' ')
+            
 
 
     elif my_choice == '앞으로의 여가활동 지출정도 예상':
@@ -151,40 +188,91 @@ def run_eda_app():
 
         age_choice= st.selectbox('연령대 선택',leisure_data['age'].unique())
 
-        data1= leisure_data[leisure_data['age'] == age_choice].sort_values('willingness_to_spending')
-        fig4 = px.pie(data1, names='willingness_to_spending', title= age_choice +' 앞으로의 여가활동 지출정도')
-        st.plotly_chart(fig4)
+        tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
+
+        with tab1:
+            data1= leisure_data[leisure_data['age'] == age_choice].sort_values('willingness_to_spending')
+            fig4 = px.pie(data1, names='willingness_to_spending', title= age_choice +' 앞으로의 여가활동 지출정도')
+            st.plotly_chart(fig4)
         
-        st.text(' ')
-        st.text(' ')
+
+        with tab2 :
+            col1, col2 = st.columns(2)
+            with col1:
+                st.text('')
+                img3 = 'https://img.hani.co.kr/imgdb/resize/2016/0819/1471523789_147152378241_20160819.JPG'
+                st.image(img3)
+                st.text(' ')
+                st.text(' ')
+
+            with col2 :
+                st.text('')
+                st.text('')
+                st.text('')
+                willingness_to_spending_data = leisure_data[leisure_data['age']== age_choice]['willingness_to_spending'].value_counts().to_frame()
+                st.dataframe(willingness_to_spending_data)
+                st.text(' ')
+            
+
+        st.text('')
+        st.text('')
 
 
-       
         gender_choice= st.selectbox('성별 선택', ['여성','남성'])
     
+
         if gender_choice == '여성' :
             gender_choice2 = 'F'
 
         elif gender_choice == '남성' :
             gender_choice2 = 'M'
 
-        data2= leisure_data[leisure_data['gender'] == gender_choice2].sort_values('willingness_to_spending')
-        fig5 = px.pie(data2, names='willingness_to_spending', title= gender_choice +'별 앞으로의 여가활동 지출정도')
-        st.plotly_chart(fig5)
+        tab1, tab2 = st.tabs(["📈 Chart", "🗃 Data"])
+
+        with tab1:
+
+            data2= leisure_data[leisure_data['gender'] == gender_choice2].sort_values('willingness_to_spending')
+            fig5 = px.pie(data2, names='willingness_to_spending', title= gender_choice +'별 앞으로의 여가활동 지출정도')
+            st.plotly_chart(fig5)
+
+        with tab2:
+            col1, col2 = st.columns(2)
+            
+            with col1 :
+                st.text('')
+                st.text('')
+                img4 = 'https://img7.yna.co.kr/photo/cms/2020/10/16/67/PCM20201016000167990_P4.jpg'
+                st.image(img4)
+
+
+            with col2:
+                st.text('')
+                willingness_to_spending_data2 = leisure_data[leisure_data['gender']== gender_choice2]['willingness_to_spending'].value_counts().to_frame()
+                st.dataframe(willingness_to_spending_data2)
 
 
 
     elif my_choice == '가장 활발한 여가활동' :
-        st.markdown('##### 온라인 소비자의 평균 여가문화 시간 - 평일/주말/1주 ')
 
-        # 소비자의 평균 여가문화시간 데이터프레임        
 
-        leisure_use = leisure_data.groupby('gender')[['workday_leisure_avg','weekend_leisure_avg','one_week_total_leisure']].mean()
-        leisure_use = leisure_use.reset_index()
-        leisure_use['gender'] = ['여성', '남성']
-        leisure_use = leisure_use.set_index('gender')
+        st.markdown('#### 온라인 소비자의 평균 여가 문화 시간 데이터를 보여줍니다.')
+        status = st.radio('', ['남녀별 평균 여가문화 시간', '나이대별 평균 여가문화 시간'] )
+
         st.text('')
-        st.write(leisure_use)
+        # 소비자의 평균 여가문화시간 데이터프레임        
+        if status == '남녀별 평균 여가문화 시간' :
+            leisure_use = leisure_data.groupby('gender')[['workday_leisure_avg','weekend_leisure_avg','one_week_total_leisure']].mean()
+            leisure_use = leisure_use.reset_index()
+            leisure_use['gender'] = ['여성', '남성']
+            leisure_use = leisure_use.set_index('gender')
+            st.text('')
+            st.write(leisure_use)
+
+        elif status == '나이대별 평균 여가문화 시간':
+            
+            age_avg = leisure_data.groupby('age')[['workday_leisure_avg','weekend_leisure_avg','one_week_total_leisure']].mean()
+            st.dataframe(age_avg)
+        
 
 
         # 연령별 가장 활발한 여가활동을 히트맵으로 나타내기

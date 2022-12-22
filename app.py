@@ -6,7 +6,7 @@ from app_home import run_home_app
 from app_about import run_about_app
  
 def main() :
-    st.title('온라인 소비자의 여가 문화 분석')
+    st.title('온라인 소비자의 여가 문화 분석 🎨')
 
 
     menu = ['Home', 'EDA', 'About']
