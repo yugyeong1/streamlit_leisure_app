@@ -180,9 +180,10 @@ def run_eda_app():
         # 소비자의 평균 여가문화시간 데이터프레임        
 
         leisure_use = leisure_data.groupby('gender')[['workday_leisure_avg','weekend_leisure_avg','one_week_total_leisure']].mean()
-        leisure_use['gender'] = ['여성','남성']
+        leisure_use = leisure_use.reset_index()
+        leisure_use['gender'] = ['여성', '남성']
         leisure_use = leisure_use.set_index('gender')
-
+        st.text('')
         st.write(leisure_use)
 
 
@@ -192,10 +193,8 @@ def run_eda_app():
         st.text(' ')
         st.markdown('#### 연령별 또는 남녀별 어떤 여가활동이 활발했는지 보여줍니다.')
         column_list = leisure_data[['rest_rcrt_rate','hobby_rate','self_impt_rate','human_relationship_rate','etc_rate']].columns
-        # st.markdown('##### 연령별 가장 활발한 여가활동')
                 
         data = leisure_data.groupby('age')[['rest_rcrt_rate','hobby_rate','self_impt_rate','human_relationship_rate','etc_rate']].mean().reset_index()
-        data['age'] = data['age'].str.replace('대',"'s")
         data = data.set_index('age')
 
 
@@ -225,6 +224,7 @@ def run_eda_app():
         st.text('')
         fig7 = plt.figure()
         plt.plot(x)
+        plt.title('남녀별 주로 즐기는 여가 활동')
         plt.xticks(rotation= 45)
         plt.xlabel('type of leisure')
         plt.ylabel('average of numbers')
