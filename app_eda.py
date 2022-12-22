@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import seaborn as sb
 import plotly.express as px
 
-# 한글 처리를 위한 코드
 import platform
 from matplotlib import font_manager, rc
 plt.rcParams['axes.unicode_minus'] = False
@@ -13,9 +12,8 @@ if platform.system() == 'Linux':
     rc('font', family='NanumGothic')
 
 
-
-
 def run_eda_app():
+
     # 여가관련 지출 동향 및 의향 데이터
     sp_tre1 = pd.read_csv('data/spending_trends/sp_tre1.csv')
     sp_tre2 = pd.read_csv('data/spending_trends/sp_tre2.csv')
@@ -194,7 +192,7 @@ def run_eda_app():
         st.text(' ')
         st.markdown('#### 연령별 또는 남녀별 어떤 여가활동이 활발했는지 보여줍니다.')
         column_list = leisure_data[['rest_rcrt_rate','hobby_rate','self_impt_rate','human_relationship_rate','etc_rate']].columns
-        st.markdown('##### 연령별 가장 활발한 여가활동')
+        # st.markdown('##### 연령별 가장 활발한 여가활동')
                 
         data = leisure_data.groupby('age')[['rest_rcrt_rate','hobby_rate','self_impt_rate','human_relationship_rate','etc_rate']].mean().reset_index()
         data['age'] = data['age'].str.replace('대',"'s")
@@ -203,6 +201,7 @@ def run_eda_app():
 
         fig6 = plt.figure()
         sb.heatmap(data, cmap='coolwarm', annot= True, fmt='.1f', linewidths= 0.7)
+        plt.title('연령별 가장 활발한 여가활동')
         plt.xticks(rotation= 45)
         plt.yticks(rotation= 360)
         st.pyplot(fig6)
