@@ -7,6 +7,8 @@ from app_about import run_about_app
  
 def main() :
     st.title('온라인 소비자의 여가 문화 분석')
+
+
     menu = ['Home', 'EDA', 'About']
  
     choice = st.sidebar.selectbox('메뉴', menu)
