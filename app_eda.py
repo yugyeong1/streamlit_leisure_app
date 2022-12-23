@@ -159,6 +159,7 @@ def run_eda_app():
             st.plotly_chart(fig3)
 
         with tab2 :
+            st.text('')
             now_leisure_data = leisure_data[leisure_data['gender']== gender_choice2]['now_leisure_spend'].value_counts().to_frame()
             st.dataframe(now_leisure_data)
             st.text(' ')
