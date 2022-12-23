@@ -133,19 +133,11 @@ def run_eda_app():
         
         
         with tab2 :
-            col1, col2 = st.columns(2)
-
-            with col1 :
-                st.text('')
-                tab_img = 'http://img.segye.com/content/image/2020/12/29/20201229507299.jpg'
-                st.image(tab_img)
-
-            with col2:
-                st.text('')
-                now_leisure_data = leisure_data[leisure_data['age']== age_choice]['now_leisure_spend'].value_counts().to_frame()
-                st.dataframe(now_leisure_data)
-                st.text(' ')
-            
+            st.text('')
+            now_leisure_data = leisure_data[leisure_data['age']== age_choice]['now_leisure_spend'].value_counts().to_frame()
+            st.dataframe(now_leisure_data)
+            st.text(' ')
+        
         st.text('')
         st.text('')
 
@@ -167,17 +159,9 @@ def run_eda_app():
             st.plotly_chart(fig3)
 
         with tab2 :
-            col1, col2 = st.columns(2)
-
-            with col1 :
-                st.text('')
-                st.text('')
-                img2 = 'https://mblogthumb-phinf.pstatic.net/MjAxODEwMTdfMTM5/MDAxNTM5NzcwNzQ4NDMy.I8RvUZ7t6t5C1fq9N9YiByEkYss4AiuYsNGGDlOqv2Qg.xQDbBTlH2HRe5jKl_5aDdH6lJ-Am3FjLt8MD8UZbzCEg.PNG.mosfnet/181016_%EA%B8%B0%ED%9A%8D%EC%9E%AC%EC%A0%95%EB%B6%80%ED%99%88%EC%A1%B102.png?type=w800'
-                st.image(img2)
-            with col2:
-                now_leisure_data = leisure_data[leisure_data['gender']== gender_choice2]['now_leisure_spend'].value_counts().to_frame()
-                st.dataframe(now_leisure_data)
-                st.text(' ')
+            now_leisure_data = leisure_data[leisure_data['gender']== gender_choice2]['now_leisure_spend'].value_counts().to_frame()
+            st.dataframe(now_leisure_data)
+            st.text(' ')
             
 
 
@@ -197,22 +181,13 @@ def run_eda_app():
         
 
         with tab2 :
-            col1, col2 = st.columns(2)
-            with col1:
-                st.text('')
-                img3 = 'https://img.hani.co.kr/imgdb/resize/2016/0819/1471523789_147152378241_20160819.JPG'
-                st.image(img3)
-                st.text(' ')
-                st.text(' ')
-
-            with col2 :
-                st.text('')
-                st.text('')
-                st.text('')
-                willingness_to_spending_data = leisure_data[leisure_data['age']== age_choice]['willingness_to_spending'].value_counts().to_frame()
-                st.dataframe(willingness_to_spending_data)
-                st.text(' ')
-            
+            st.text('')
+            st.text('')
+            st.text('')
+            willingness_to_spending_data = leisure_data[leisure_data['age']== age_choice]['willingness_to_spending'].value_counts().to_frame()
+            st.dataframe(willingness_to_spending_data)
+            st.text(' ')
+        
 
         st.text('')
         st.text('')
@@ -236,19 +211,9 @@ def run_eda_app():
             st.plotly_chart(fig5)
 
         with tab2:
-            col1, col2 = st.columns(2)
-            
-            with col1 :
-                st.text('')
-                st.text('')
-                img4 = 'https://img7.yna.co.kr/photo/cms/2020/10/16/67/PCM20201016000167990_P4.jpg'
-                st.image(img4)
-
-
-            with col2:
-                st.text('')
-                willingness_to_spending_data2 = leisure_data[leisure_data['gender']== gender_choice2]['willingness_to_spending'].value_counts().to_frame()
-                st.dataframe(willingness_to_spending_data2)
+            st.text('')
+            willingness_to_spending_data2 = leisure_data[leisure_data['gender']== gender_choice2]['willingness_to_spending'].value_counts().to_frame()
+            st.dataframe(willingness_to_spending_data2)
 
 
 
