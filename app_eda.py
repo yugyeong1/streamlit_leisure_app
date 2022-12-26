@@ -14,54 +14,7 @@ if platform.system() == 'Linux':
 
 def run_eda_app():
 
-    # 여가관련 지출 동향 및 의향 데이터
-    sp_tre1 = pd.read_csv('data/spending_trends/sp_tre1.csv')
-    sp_tre2 = pd.read_csv('data/spending_trends/sp_tre2.csv')
-    sp_tre3 = pd.read_csv('data/spending_trends/sp_tre3.csv')
-    sp_tre4 = pd.read_csv('data/spending_trends/sp_tre4.csv')
-    sp_tre5 = pd.read_csv('data/spending_trends/sp_tre5.csv')
-
-    # 여가관련 지출 동향 및 의향 데이터 합치기
-    spending_trend = pd.concat([sp_tre1, sp_tre2, sp_tre3, sp_tre4, sp_tre5])
-
-    # 컬럼명 바꾸기
-    spending_trend = spending_trend.rename( columns = {'RESPOND_ID':'id', 'EXAMIN_BEGIN_DE':'inspection_day' , 'SEXDSTN_FLAG_CD':'gender', 
-                                    'AGRDE_FLAG_NM':'age', 'ANSWRR_OC_AREA_NM':'area', 'HSHLD_INCOME_DGREE_NM': 'income_degree', 
-                                    'LSR_CT_EXPNDTR_TNDCY_VALUE':'now_leisure_spend','LSR_CT_EXPNDTR_INTEN_VALUE':'willingness_to_spending'})
-
-    # 하루 평균 여가문화 시간 및 사용 비중 데이터
-    avg_leisure1 = pd.read_csv('data/avg_leisure/avg_leisure1.csv')
-    avg_leisure2 = pd.read_csv('data/avg_leisure/avg_leisure2.csv')
-    avg_leisure3 = pd.read_csv('data/avg_leisure/avg_leisure3.csv')
-    avg_leisure4 = pd.read_csv('data/avg_leisure/avg_leisure4.csv')
-    avg_leisure5 = pd.read_csv('data/avg_leisure/avg_leisure5.csv')
-
-    # 하루 평균 여가문화 시간 및 사용 비중 데이터 합치기
-    avg_leisure = pd.concat([avg_leisure1, avg_leisure2, avg_leisure3, avg_leisure4, avg_leisure5])
-
-    # 컬럼명 바꾸기
-    avg_leisure = avg_leisure.rename( columns = {'RESPOND_ID':'id', 'EXAMIN_BEGIN_DE':'inspection_day' , 'SEXDSTN_FLAG_CD':'gender','AGRDE_FLAG_NM':'age',
-                                'ANSWRR_OC_AREA_NM':'area', 'HSHLD_INCOME_DGREE_NM': 'income_degree', 'WORKDAY_DAY_AVRG_LSR_TIME_VALUE':'workday_leisure_avg', 'WKEND_DAY_AVRG_LSR_TIME_VALUE' : 'weekend_leisure_avg',
-                                'ONE_WEEK_TOT_LSR_TIME_VALUE':'one_week_total_leisure', 'LSR_TIME_REST_RCRT_USE_RATE' : 'rest_rcrt_rate',
-                                'LSR_TIME_HOBBY_USE_RATE': 'hobby_rate', 'LSR_TIME_SELF_IMPT_USE_RATE':'self_impt_rate',
-                                'LSR_TIME_TWDPSN_RLTN_FLWSP_USE_RATE': 'human_relationship_rate', 'LSR_TIME_ETC_USE_RATE':'etc_rate'})
-
-
-    # 데이터 가공
-
-    # spendint_trend 데이터와 avg_leisure 데이터가 겹치는 컬럼을 avg_leisure 데이터프레임에서 제거
-    avg_leisure = avg_leisure.drop(['inspection_day','gender','age','area','income_degree'], axis= 1)
-
-    # 데이터프레임 두개를 merge
-    leisure_data = pd.merge(spending_trend, avg_leisure, on = 'id', how= 'left')
-
-    leisure_data.loc[leisure_data['income_degree'] == '300만원 미만','income_degree'] = 200
-    leisure_data.loc[leisure_data['income_degree'] == '300이상500만원 미만','income_degree'] = 400
-    leisure_data.loc[leisure_data['income_degree'] == '500이상700만원 미만','income_degree'] = 600
-    leisure_data.loc[leisure_data['income_degree'] == '700만원 이상','income_degree'] = 700
-
-    leisure_data = leisure_data[~leisure_data['income_degree'].isin(['무응답'])]
-    leisure_data['income_degree'] = leisure_data['income_degree'].astype(float)
+    leisure_data = pd.read_csv('leisure_data.csv')
 
     st.text(' ')
     st.text(' ')
